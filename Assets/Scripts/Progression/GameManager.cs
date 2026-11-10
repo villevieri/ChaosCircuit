@@ -35,9 +35,15 @@ public class GameManager : MonoBehaviour
 
         runEnded = true;
 
+        int earnedScrap = ResourceManager.Instance.RunResources;
+
+        ResourceManager.Instance.CompleteRun();
+
         resultsText.text =
-            "RUN OVER\n\nScrap collected: " +
-            ResourceManager.Instance.Resources;
+            "RUN OVER\n\n" +
+            "Scrap collected: " + earnedScrap +
+            "\nTotal Scrap: " +
+            ResourceManager.Instance.TotalResources;
 
         resultsPanel.SetActive(true);
 
