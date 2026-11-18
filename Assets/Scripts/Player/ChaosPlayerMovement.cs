@@ -49,9 +49,26 @@ public class ChaosPlayerMovement : MonoBehaviour
     public float FuelNormalized =>
         maxFuel > 0f ? fuel / maxFuel : 0f;
 
+    public float MaxFuel => maxFuel;
+
+    public float CurrentFuel => fuel;
+    public void UpgradeMaxFuel(float amount)
+    {
+        maxFuel += amount;
+        fuel = maxFuel;
+
+        Debug.Log("Jetpack upgraded! Max fuel: " + maxFuel);
+    }
+
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+
+        if (UpgradeManager.Instance != null)
+        {
+            maxFuel += UpgradeManager.Instance.JetpackLevel * 0.5f;
+        }
+
         fuel = maxFuel;
     }
 
